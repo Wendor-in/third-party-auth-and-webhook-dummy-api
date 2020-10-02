@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const port = process.env.PORT || 3000;
 
 // Connecting to MongoDB Atlas DB
 mongoose.connect(process.env.DATABASE_URL, {
@@ -20,4 +21,4 @@ app.use("/employees", employeesRoutes);
 
 // Starting Express Server
 app.use(express.json());
-app.listen(3000, () => console.log("Server Started"));
+app.listen(port, () => console.log("Server Started"));
