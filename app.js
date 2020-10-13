@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const port = process.env.PORT || 3000;
-// Connecting to MongoDB Atlas DB
+
+// Connecting to MongoDB Atlas
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -20,6 +21,9 @@ app.use(express.json());
 // Importing Routes
 const employeesRoutes = require("./routes/employees");
 app.use("/employees", employeesRoutes);
+
+const webhookRoutes = require("./routes/webhook");
+app.use("/webhook", webhookRoutes);
 
 // Routes
 app.get("/", (req, res) => {
