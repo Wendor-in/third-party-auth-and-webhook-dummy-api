@@ -5,13 +5,13 @@ const Employee = require("../models/Employee");
 router.post("/", async (req, res) => {
   try {
     // Take details from request
-    const EID = req.body.employee_id;
-    const phone_number = req.body.phone_number;
-    const email_add = req.body.email;
+    const name = req.body.user_details['name'];
+    const phone_number = req.body.user_details['phone_number'];
+    const email = req.body.user_details['email'];
 
     // Find phone number in employee details DB
     const employee = await Employee.findOne({
-      $or: [{ employee_id: EID }, { phone_number: phone_number }, { email: email_add }],
+      $or: [{ name: name }, { phone_number: phone_number }, { email: email }],
     });
 
     if (employee != null) {
